@@ -1,10 +1,10 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
+    <h1 class="title">Welcome</h1>
     <HelloWorld msg="Hello world"/>
     <TestComponent msg="welcome to the lain"/>
     <!-- bind postsArray to Posts component as a prop -->
-    <Posts v-bind:postsArray="postsArray" />
+    <Posts v-bind:postsArray="postsArray" v-on:delete-post="deletePost" />
   </div>
 </template>
 
@@ -45,16 +45,34 @@ export default {
         }
       ]
     }
+  },
+
+  methods: {
+    deletePost(postid) {
+      this.postsArray = this.postsArray.filter(post => post.id !== postid);
+    }
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+    @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+    body, html {
+    min-height: 100%;
+    background: #45454d;
+    margin: 5px;
+    overflow-y: hidden;
+  }
+  #app {
+    font-family: 'Roboto', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+  }
+  .title {
+    background: #ff4893;
+  }
+
 </style>
